@@ -2,414 +2,419 @@
 <html lang="en">
 
 <head>
-<link rel="icon" type="image/png" href="favicon.png">
-    
-<meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta charset="UTF-8">
 
-<title>
-Student Verification
-</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
+    <title>Student Verification</title>
 
-<style>
+    <!-- FAVICON -->
+    <link rel="icon"
+          type="image/png"
+          href="./favicon.png">
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+    <link rel="shortcut icon"
+          type="image/png"
+          href="./favicon.png">
 
+    <style>
 
-body {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-    min-height: 100vh;
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
 
-    display: flex;
+            background:
+            linear-gradient(
+                135deg,
+                #0f172a,
+                #1e293b
+            );
+        }
 
-    justify-content: center;
+        .container {
+            width: 100%;
+            max-width: 650px;
 
-    align-items: center;
+            background: white;
 
-    padding: 20px;
+            padding: 35px;
 
-    background:
-    linear-gradient(
-        135deg,
-        #0f172a,
-        #1e293b
-    );
+            border-radius: 20px;
 
-}
+            box-shadow:
+            0 20px 50px
+            rgba(0,0,0,0.3);
+        }
 
+        /* LOGO */
 
-.container {
+        .logo {
+            width: 65px;
+            height: 65px;
 
-    width: 100%;
+            margin: 0 auto 15px;
 
-    max-width: 650px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-    background: white;
+            overflow: hidden;
 
-    padding: 35px;
+            border-radius: 50%;
 
-    border-radius: 20px;
+            background: #f1f5f9;
 
-    box-shadow:
-    0 20px 50px
-    rgba(0,0,0,0.3);
+            border: 3px solid #2563eb;
 
-}
+            box-shadow:
+            0 5px 15px
+            rgba(37,99,235,0.2);
+        }
 
+        .logo img {
+            width: 100%;
+            height: 100%;
 
-.logo {
+            object-fit: cover;
+        }
 
-    text-align: center;
+        h1 {
+            text-align: center;
 
-    font-size: 45px;
+            color: #0f172a;
 
-    margin-bottom: 10px;
+            margin-bottom: 8px;
 
-}
+            font-size: 30px;
+        }
 
+        .subtitle {
+            text-align: center;
 
-h1 {
+            color: #64748b;
 
-    text-align: center;
+            margin-bottom: 30px;
 
-    color: #0f172a;
+            font-size: 16px;
+        }
 
-    margin-bottom: 8px;
+        /* SEARCH */
 
-}
+        .search-box {
+            display: flex;
 
+            gap: 10px;
+        }
 
-.subtitle {
+        input {
+            flex: 1;
 
-    text-align: center;
+            padding: 15px;
 
-    color: #64748b;
+            border:
+            2px solid
+            #cbd5e1;
 
-    margin-bottom: 30px;
+            border-radius: 10px;
 
-}
+            font-size: 16px;
 
+            outline: none;
 
-.search-box {
+            text-transform: uppercase;
+        }
 
-    display: flex;
+        input:focus {
+            border-color:
+            #2563eb;
+        }
 
-    gap: 10px;
+        .search-btn {
+            padding:
+            15px 25px;
 
-}
+            border: none;
 
+            border-radius: 10px;
 
-input {
+            background:
+            #2563eb;
 
-    flex: 1;
+            color: white;
 
-    padding: 15px;
+            font-size: 16px;
 
-    border:
-    2px solid
-    #cbd5e1;
+            font-weight: bold;
 
-    border-radius: 10px;
+            cursor: pointer;
 
-    font-size: 16px;
+            min-width: 100px;
+        }
 
-    outline: none;
+        .search-btn:hover {
+            background:
+            #1d4ed8;
+        }
 
-    text-transform: uppercase;
+        .search-btn:disabled {
+            background: #94a3b8;
 
-}
+            cursor: not-allowed;
+        }
 
+        /* LOADING */
 
-input:focus {
+        .loading {
+            display: none;
 
-    border-color:
-    #2563eb;
+            text-align: center;
 
-}
+            margin-top: 20px;
 
+            color:
+            #2563eb;
 
-.search-btn {
+            font-weight: bold;
+        }
 
-    padding:
-    15px 25px;
+        .spinner {
+            width: 25px;
+            height: 25px;
 
-    border: none;
+            border:
+            4px solid
+            #dbeafe;
 
-    border-radius: 10px;
+            border-top:
+            4px solid
+            #2563eb;
 
-    background:
-    #2563eb;
+            border-radius: 50%;
 
-    color: white;
+            animation:
+            spin 0.8s linear infinite;
 
-    font-size: 16px;
+            margin:
+            0 auto 10px;
+        }
 
-    font-weight: bold;
+        @keyframes spin {
 
-    cursor: pointer;
+            0% {
+                transform: rotate(0deg);
+            }
 
-}
+            100% {
+                transform: rotate(360deg);
+            }
 
+        }
 
-.search-btn:hover {
+        /* ERROR */
 
-    background:
-    #1d4ed8;
+        .error {
+            display: none;
 
-}
+            margin-top: 20px;
 
+            padding: 15px;
 
-.loading {
+            border-radius: 10px;
 
-    display: none;
+            background:
+            #fee2e2;
 
-    text-align: center;
+            color:
+            #b91c1c;
 
-    margin-top: 20px;
+            text-align: center;
 
-    color:
-    #2563eb;
+            font-weight: bold;
+        }
 
-    font-weight: bold;
+        /* STUDENT CARD */
 
-}
+        .student-card {
+            display: none;
 
+            margin-top: 25px;
 
-.error {
+            padding: 25px;
 
-    display: none;
+            background:
+            #f8fafc;
 
-    margin-top: 20px;
+            border-radius: 15px;
 
-    padding: 15px;
+            border:
+            1px solid
+            #e2e8f0;
+        }
 
-    border-radius: 10px;
+        .student-header {
+            text-align: center;
 
-    background:
-    #fee2e2;
+            margin-bottom: 25px;
+        }
 
-    color:
-    #b91c1c;
+        .student-photo {
+            width: 120px;
+            height: 120px;
 
-    text-align: center;
+            border-radius: 50%;
 
-}
+            object-fit: cover;
 
+            border:
+            4px solid
+            #2563eb;
 
-.student-card {
+            margin-bottom: 12px;
+        }
 
-    display: none;
+        .student-name {
+            font-size: 24px;
 
-    margin-top: 25px;
+            font-weight: bold;
 
-    padding: 25px;
+            color:
+            #0f172a;
+        }
 
-    background:
-    #f8fafc;
+        .verified {
+            display: inline-block;
 
-    border-radius: 15px;
+            margin-top: 8px;
 
-    border:
-    1px solid
-    #e2e8f0;
+            padding:
+            6px 12px;
 
-}
+            background:
+            #dcfce7;
 
+            color:
+            #15803d;
 
-.student-header {
+            border-radius: 20px;
 
-    text-align: center;
+            font-size: 13px;
 
-    margin-bottom: 25px;
+            font-weight: bold;
+        }
 
-}
+        /* INFORMATION */
 
+        .info-grid {
+            display: grid;
 
-.student-photo {
+            grid-template-columns:
+            1fr 1fr;
 
-    width: 120px;
+            gap: 12px;
+        }
 
-    height: 120px;
+        .info-item {
+            padding: 14px;
 
-    border-radius: 50%;
+            background: white;
 
-    object-fit: cover;
+            border-radius: 10px;
 
-    border:
-    4px solid
-    #2563eb;
+            border:
+            1px solid
+            #e2e8f0;
+        }
 
-    margin-bottom: 12px;
+        .info-label {
+            font-size: 12px;
 
-}
+            color:
+            #64748b;
 
+            margin-bottom: 5px;
+        }
 
-.student-name {
+        .info-value {
+            font-size: 15px;
 
-    font-size: 24px;
+            font-weight: bold;
 
-    font-weight: bold;
+            color:
+            #1e293b;
 
-    color:
-    #0f172a;
+            word-break: break-word;
+        }
 
-}
+        .reg-number {
+            grid-column:
+            1 / -1;
 
+            background:
+            #eff6ff;
 
-.verified {
+            border:
+            1px solid
+            #bfdbfe;
+        }
 
-    display: inline-block;
+        .reg-number .info-value {
+            color:
+            #1d4ed8;
 
-    margin-top: 8px;
+            font-size: 17px;
+        }
 
-    padding:
-    6px 12px;
+        /* MOBILE */
 
-    background:
-    #dcfce7;
+        @media(max-width:600px) {
 
-    color:
-    #15803d;
+            body {
+                padding: 15px;
+            }
 
-    border-radius: 20px;
+            .container {
+                padding:
+                25px 18px;
+            }
 
-    font-size: 13px;
+            h1 {
+                font-size: 25px;
+            }
 
-    font-weight: bold;
+            .search-box {
+                flex-direction:
+                column;
+            }
 
-}
+            .search-btn {
+                width: 100%;
+            }
 
+            .info-grid {
+                grid-template-columns:
+                1fr;
+            }
 
-.info-grid {
+            .reg-number {
+                grid-column:
+                auto;
+            }
 
-    display: grid;
+        }
 
-    grid-template-columns:
-    1fr 1fr;
-
-    gap: 12px;
-
-}
-
-
-.info-item {
-
-    padding: 14px;
-
-    background: white;
-
-    border-radius: 10px;
-
-    border:
-    1px solid
-    #e2e8f0;
-
-}
-
-
-.info-label {
-
-    font-size: 12px;
-
-    color:
-    #64748b;
-
-    margin-bottom: 5px;
-
-}
-
-
-.info-value {
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    color:
-    #1e293b;
-
-    word-break: break-word;
-
-}
-
-
-.reg-number {
-
-    grid-column:
-    1 / -1;
-
-    background:
-    #eff6ff;
-
-    border:
-    1px solid
-    #bfdbfe;
-
-}
-
-
-.reg-number .info-value {
-
-    color:
-    #1d4ed8;
-
-    font-size: 17px;
-
-}
-
-
-@media(max-width:600px) {
-
-    .container {
-
-        padding: 25px 18px;
-
-    }
-
-
-    .search-box {
-
-        flex-direction:
-        column;
-
-    }
-
-
-    .search-btn {
-
-        width: 100%;
-
-    }
-
-
-    .info-grid {
-
-        grid-template-columns:
-        1fr;
-
-    }
-
-
-    .reg-number {
-
-        grid-column:
-        auto;
-
-    }
-
-}
-
-</style>
+    </style>
 
 </head>
 
@@ -420,8 +425,18 @@ input:focus {
 <div class="container">
 
 
+    <!-- LOGO -->
+
     <div class="logo">
-        🛡️
+
+        <img
+            src="./favicon.png"
+            alt="OSS Cyber Academy Logo"
+            onerror="
+                this.style.display='none';
+            "
+        >
+
     </div>
 
 
@@ -439,21 +454,20 @@ input:focus {
 
     <div class="search-box">
 
-
         <input
             type="text"
             id="regNumber"
             placeholder="Please enter Full Registration Number"
+            autocomplete="off"
         >
-
 
         <button
             class="search-btn"
+            id="searchBtn"
             onclick="searchStudent()"
         >
             Search
         </button>
-
 
     </div>
 
@@ -465,6 +479,8 @@ input:focus {
         id="loading"
     >
 
+        <div class="spinner"></div>
+
         Searching Student...
 
     </div>
@@ -475,8 +491,7 @@ input:focus {
     <div
         class="error"
         id="error"
-    >
-    </div>
+    ></div>
 
 
     <!-- STUDENT RESULT -->
@@ -486,24 +501,19 @@ input:focus {
         id="studentCard"
     >
 
-
-        <!-- PHOTO -->
-
         <div
             class="student-header"
         >
 
-
             <img
                 id="studentPhoto"
                 class="student-photo"
-                src=""
+                src="./favicon.png"
                 alt="Student Photo"
                 onerror="
-                this.src='https://via.placeholder.com/120'
+                    this.src='./favicon.png'
                 "
             >
-
 
             <div
                 class="student-name"
@@ -511,20 +521,14 @@ input:focus {
             >
             </div>
 
-
             <div
                 class="verified"
             >
-
                 ✓ VERIFIED STUDENT
-
             </div>
-
 
         </div>
 
-
-        <!-- INFORMATION -->
 
         <div
             class="info-grid"
@@ -543,83 +547,48 @@ input:focus {
 <script>
 
 
-/*
-=====================================
-PASTE YOUR APPS SCRIPT WEB APP URL
-=====================================
-*/
+/* =====================================
+   GOOGLE APPS SCRIPT API URL
+===================================== */
 
 const API_URL =
-
 "https://script.google.com/macros/s/AKfycbzL-CJ1Lxvqxs8g8SH2LHbhAmBh51P3tQT3FRYitODCClGDdmJrBTwedYnOVCzw-69v/exec";
 
 
-
-/*
-=====================================
-SEARCH STUDENT
-=====================================
-*/
+/* =====================================
+   SEARCH STUDENT
+===================================== */
 
 function searchStudent() {
 
-
     const input =
+    document.getElementById("regNumber");
 
-    document
-    .getElementById(
-        "regNumber"
-    );
+    const loading =
+    document.getElementById("loading");
+
+    const error =
+    document.getElementById("error");
+
+    const card =
+    document.getElementById("studentCard");
+
+    const searchBtn =
+    document.getElementById("searchBtn");
 
 
     const regNumber =
-
-    input.value
-    .trim()
-    .toUpperCase();
+    input.value.trim().toUpperCase();
 
 
-    const loading =
+    /* RESET */
 
-    document
-    .getElementById(
-        "loading"
-    );
+    error.style.display = "none";
 
-
-    const error =
-
-    document
-    .getElementById(
-        "error"
-    );
+    card.style.display = "none";
 
 
-    const card =
-
-    document
-    .getElementById(
-        "studentCard"
-    );
-
-
-    /*
-    RESET
-    */
-
-
-    error.style.display =
-    "none";
-
-
-    card.style.display =
-    "none";
-
-
-    /*
-    EMPTY SEARCH
-    */
-
+    /* EMPTY INPUT */
 
     if (!regNumber) {
 
@@ -632,370 +601,344 @@ function searchStudent() {
     }
 
 
-    /*
-    SHOW LOADING
-    */
+    /* SHOW LOADING */
+
+    loading.style.display = "block";
+
+    searchBtn.disabled = true;
+
+    searchBtn.innerText = "Searching...";
 
 
-    loading.style.display =
-    "block";
-
-
-    /*
-    API URL
-    */
-
+    /* API URL */
 
     const url =
+    API_URL +
+    "?reg=" +
+    encodeURIComponent(regNumber);
 
-    API_URL
-    +
-    "?reg="
-    +
-    encodeURIComponent(
-        regNumber
+
+    /* =====================================
+       ABORT CONTROLLER
+    ===================================== */
+
+    const controller =
+    new AbortController();
+
+
+    const timeout =
+    setTimeout(
+        () => {
+
+            controller.abort();
+
+        },
+        10000
     );
 
 
-    /*
-    FETCH DATA
-    */
+    /* =====================================
+       FETCH API
+    ===================================== */
 
+    fetch(
+        url,
+        {
+            method: "GET",
 
-    fetch(url)
+            signal:
+            controller.signal,
 
-
-    .then(
-        response =>
-        response.json()
+            cache: "no-store"
+        }
     )
 
+    .then(
+        response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "HTTP Error: " +
+                    response.status
+                );
+
+            }
+
+            return response.json();
+
+        }
+    )
 
     .then(
         data => {
 
-
-        loading.style.display =
-        "none";
+            clearTimeout(timeout);
 
 
-        /*
-        STUDENT FOUND
-        */
+            loading.style.display =
+            "none";
 
 
-        if (
-            data.success &&
-            data.student
-        ) {
+            searchBtn.disabled =
+            false;
 
 
-            displayStudent(
+            searchBtn.innerText =
+            "Search";
+
+
+            /* STUDENT FOUND */
+
+            if (
+                data &&
+                data.success &&
                 data.student
-            );
+            ) {
+
+                displayStudent(
+                    data.student
+                );
+
+            }
 
 
-        }
+            /* NOT FOUND */
 
+            else {
 
-        /*
-        STUDENT NOT FOUND
-        */
+                showError(
 
+                    data.message ||
 
-        else {
+                    "No student data found."
 
+                );
 
-            showError(
-
-                data.message
-
-                ||
-
-                "Student not found."
-
-            );
-
+            }
 
         }
-
-
-    })
-
+    )
 
     .catch(
         error => {
 
-
-        loading.style.display =
-        "none";
+            clearTimeout(timeout);
 
 
-        showError(
-
-            "Unable to connect to database."
-
-        );
+            loading.style.display =
+            "none";
 
 
-        console.error(
-            error
-        );
+            searchBtn.disabled =
+            false;
 
 
-    });
+            searchBtn.innerText =
+            "Search";
+
+
+            console.error(
+                "API ERROR:",
+                error
+            );
+
+
+            if (
+                error.name ===
+                "AbortError"
+            ) {
+
+                showError(
+                    "Server response timed out. Please try again."
+                );
+
+            }
+
+            else {
+
+                showError(
+                    "Unable to connect to database. Please try again."
+                );
+
+            }
+
+        }
+    );
 
 }
 
 
+/* =====================================
+   DISPLAY STUDENT
+===================================== */
 
-/*
-=====================================
-DISPLAY STUDENT
-=====================================
-*/
-
-function displayStudent(
-    student
-) {
-
+function displayStudent(student) {
 
     const card =
-
-    document
-    .getElementById(
+    document.getElementById(
         "studentCard"
     );
 
-
     const name =
-
-    document
-    .getElementById(
+    document.getElementById(
         "studentName"
     );
 
-
     const photo =
-
-    document
-    .getElementById(
+    document.getElementById(
         "studentPhoto"
     );
 
-
     const grid =
-
-    document
-    .getElementById(
+    document.getElementById(
         "infoGrid"
     );
 
 
-    /*
-    STUDENT NAME
-    */
-
+    /* NAME */
 
     name.innerText =
-
-    student[
-        "Student Name"
-    ]
-
-    ||
-
+    student["Student Name"] ||
     "Student";
 
 
-    /*
-    STUDENT PHOTO
-    */
-
+    /* PHOTO */
 
     photo.src =
-
-    student[
-        "Student Photo"
-    ]
-
-    ||
-
-    "https://via.placeholder.com/120";
+    student["Student Photo"] ||
+    "./favicon.png";
 
 
-    /*
-    CLEAR OLD DATA
-    */
-
+    /* CLEAR OLD DATA */
 
     grid.innerHTML = "";
 
 
-    /*
-    DISPLAY INFORMATION
-    */
-
+    /* FIELDS */
 
     const fields = [
 
         {
-            key:
-            "Student Name",
-
-            icon:
-            "👤"
+            key: "Student Name",
+            icon: "👤"
         },
 
         {
-            key:
-            "Registration Number",
-
-            icon:
-            "🆔"
+            key: "Registration Number",
+            icon: "🆔"
         },
 
         {
-            key:
-            "Roll Number",
-
-            icon:
-            "🔢"
+            key: "Roll Number",
+            icon: "🔢"
         },
 
         {
-            key:
-            "Date of Birth",
-
-            icon:
-            "📅"
+            key: "Date of Birth",
+            icon: "📅"
         },
 
         {
-            key:
-            "Gender",
-
-            icon:
-            "⚧"
+            key: "Gender",
+            icon: "⚧"
         },
 
         {
-            key:
-            "Blood Group",
-
-            icon:
-            "🩸"
+            key: "Blood Group",
+            icon: "🩸"
         },
 
         {
-            key:
-            "Mobile",
-
-            icon:
-            "📱"
+            key: "Mobile",
+            icon: "📱"
         },
 
         {
-            key:
-            "Email",
-
-            icon:
-            "📧"
+            key: "Email",
+            icon: "📧"
         },
 
         {
-            key:
-            "Address",
-
-            icon:
-            "🏠"
+            key: "Address",
+            icon: "🏠"
         },
 
         {
-            key:
-            "Status",
-
-            icon:
-            "✅"
+            key: "Status",
+            icon: "✅"
         }
 
     ];
 
 
+    /* CREATE INFORMATION */
+
     fields.forEach(
         field => {
 
-
-        const item =
-
-        document
-        .createElement(
-            "div"
-        );
+            const value =
+            student[field.key];
 
 
-        item.className =
-        "info-item";
+            const item =
+            document.createElement(
+                "div"
+            );
 
 
-        if (
-            field.key ===
-            "Registration Number"
-        ) {
+            item.className =
+            "info-item";
 
-            item.classList.add(
-                "reg-number"
+
+            if (
+                field.key ===
+                "Registration Number"
+            ) {
+
+                item.classList.add(
+                    "reg-number"
+                );
+
+            }
+
+
+            item.innerHTML = `
+
+                <div
+                    class="info-label"
+                >
+
+                    ${field.icon}
+                    ${escapeHTML(
+                        field.key
+                    )}
+
+                </div>
+
+                <div
+                    class="info-value"
+                >
+
+                    ${escapeHTML(
+                        value ||
+                        "N/A"
+                    )}
+
+                </div>
+
+            `;
+
+
+            grid.appendChild(
+                item
             );
 
         }
+    );
 
 
-        item.innerHTML = `
-
-            <div
-                class="info-label"
-            >
-
-                ${field.icon}
-
-                ${field.key}
-
-            </div>
-
-
-            <div
-                class="info-value"
-            >
-
-                ${escapeHTML(
-
-                    student[
-                        field.key
-                    ]
-
-                    ||
-
-                    "N/A"
-
-                )}
-
-            </div>
-
-        `;
-
-
-        grid.appendChild(
-            item
-        );
-
-
-    });
-
-
-    /*
-    SHOW RESULT
-    */
-
+    /* SHOW CARD */
 
     card.style.display =
     "block";
@@ -1003,22 +946,14 @@ function displayStudent(
 }
 
 
+/* =====================================
+   ERROR MESSAGE
+===================================== */
 
-/*
-=====================================
-ERROR MESSAGE
-=====================================
-*/
-
-function showError(
-    message
-) {
-
+function showError(message) {
 
     const error =
-
-    document
-    .getElementById(
+    document.getElementById(
         "error"
     );
 
@@ -1033,21 +968,13 @@ function showError(
 }
 
 
+/* =====================================
+   SECURITY
+===================================== */
 
-/*
-=====================================
-SECURITY
-=====================================
-*/
+function escapeHTML(value) {
 
-function escapeHTML(
-    value
-) {
-
-
-    return String(
-        value
-    )
+    return String(value)
 
     .replace(
         /&/g,
@@ -1077,39 +1004,27 @@ function escapeHTML(
 }
 
 
-
-/*
-=====================================
-ENTER KEY SEARCH
-=====================================
-*/
+/* =====================================
+   ENTER KEY SEARCH
+===================================== */
 
 document
-
-.getElementById(
-    "regNumber"
-)
-
+.getElementById("regNumber")
 .addEventListener(
-    "keypress",
+    "keydown",
 
     function(event) {
-
 
         if (
             event.key ===
             "Enter"
         ) {
 
-
             searchStudent();
-
 
         }
 
-
     }
-
 );
 
 </script>
