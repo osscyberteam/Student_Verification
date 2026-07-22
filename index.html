@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+Student Registration Verification
+</title>
+
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+
+}
+
+
+.container {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 20px 50px
+    rgba(0,0,0,0.3);
+
+}
+
+
+.logo {
+
+    text-align: center;
+
+    font-size: 45px;
+
+    margin-bottom: 10px;
+
+}
+
+
+h1 {
+
+    text-align: center;
+
+    color: #0f172a;
+
+    margin-bottom: 8px;
+
+}
+
+
+.subtitle {
+
+    text-align: center;
+
+    color: #64748b;
+
+    margin-bottom: 30px;
+
+}
+
+
+.search-box {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+
+input {
+
+    flex: 1;
+
+    padding: 15px;
+
+    border:
+    2px solid
+    #cbd5e1;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    text-transform: uppercase;
+
+}
+
+
+input:focus {
+
+    border-color:
+    #2563eb;
+
+}
+
+
+.search-btn {
+
+    padding:
+    15px 25px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+    #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.search-btn:hover {
+
+    background:
+    #1d4ed8;
+
+}
+
+
+.loading {
+
+    display: none;
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    color:
+    #2563eb;
+
+    font-weight: bold;
+
+}
+
+
+.error {
+
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    background:
+    #fee2e2;
+
+    color:
+    #b91c1c;
+
+    text-align: center;
+
+}
+
+
+.student-card {
+
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 25px;
+
+    background:
+    #f8fafc;
+
+    border-radius: 15px;
+
+    border:
+    1px solid
+    #e2e8f0;
+
+}
+
+
+.student-header {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.student-photo {
+
+    width: 120px;
+
+    height: 120px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border:
+    4px solid
+    #2563eb;
+
+    margin-bottom: 12px;
+
+}
+
+
+.student-name {
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    color:
+    #0f172a;
+
+}
+
+
+.verified {
+
+    display: inline-block;
+
+    margin-top: 8px;
+
+    padding:
+    6px 12px;
+
+    background:
+    #dcfce7;
+
+    color:
+    #15803d;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+.info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap: 12px;
+
+}
+
+
+.info-item {
+
+    padding: 14px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    border:
+    1px solid
+    #e2e8f0;
+
+}
+
+
+.info-label {
+
+    font-size: 12px;
+
+    color:
+    #64748b;
+
+    margin-bottom: 5px;
+
+}
+
+
+.info-value {
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    color:
+    #1e293b;
+
+    word-break: break-word;
+
+}
+
+
+.reg-number {
+
+    grid-column:
+    1 / -1;
+
+    background:
+    #eff6ff;
+
+    border:
+    1px solid
+    #bfdbfe;
+
+}
+
+
+.reg-number .info-value {
+
+    color:
+    #1d4ed8;
+
+    font-size: 17px;
+
+}
+
+
+@media(max-width:600px) {
+
+    .container {
+
+        padding: 25px 18px;
+
+    }
+
+
+    .search-box {
+
+        flex-direction:
+        column;
+
+    }
+
+
+    .search-btn {
+
+        width: 100%;
+
+    }
+
+
+    .info-grid {
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+
+    .reg-number {
+
+        grid-column:
+        auto;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="logo">
+        🛡️
+    </div>
+
+
+    <h1>
+        Student Verification
+    </h1>
+
+
+    <p class="subtitle">
+        OSS Cyber Academy
+    </p>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+
+        <input
+            type="text"
+            id="regNumber"
+            placeholder="Please enter Full Registration Number"
+        >
+
+
+        <button
+            class="search-btn"
+            onclick="searchStudent()"
+        >
+            Search
+        </button>
+
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+        class="loading"
+        id="loading"
+    >
+
+        Searching Student...
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div
+        class="error"
+        id="error"
+    >
+    </div>
+
+
+    <!-- STUDENT RESULT -->
+
+    <div
+        class="student-card"
+        id="studentCard"
+    >
+
+
+        <!-- PHOTO -->
+
+        <div
+            class="student-header"
+        >
+
+
+            <img
+                id="studentPhoto"
+                class="student-photo"
+                src=""
+                alt="Student Photo"
+                onerror="
+                this.src='https://via.placeholder.com/120'
+                "
+            >
+
+
+            <div
+                class="student-name"
+                id="studentName"
+            >
+            </div>
+
+
+            <div
+                class="verified"
+            >
+
+                ✓ VERIFIED STUDENT
+
+            </div>
+
+
+        </div>
+
+
+        <!-- INFORMATION -->
+
+        <div
+            class="info-grid"
+            id="infoGrid"
+        >
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/*
+=====================================
+PASTE YOUR APPS SCRIPT WEB APP URL
+=====================================
+*/
+
+const API_URL =
+
+"https://script.google.com/macros/s/XXXXXXXXXXXXXXXX/exec";
+
+
+
+/*
+=====================================
+SEARCH STUDENT
+=====================================
+*/
+
+function searchStudent() {
+
+
+    const input =
+
+    document
+    .getElementById(
+        "regNumber"
+    );
+
+
+    const regNumber =
+
+    input.value
+    .trim()
+    .toUpperCase();
+
+
+    const loading =
+
+    document
+    .getElementById(
+        "loading"
+    );
+
+
+    const error =
+
+    document
+    .getElementById(
+        "error"
+    );
+
+
+    const card =
+
+    document
+    .getElementById(
+        "studentCard"
+    );
+
+
+    /*
+    RESET
+    */
+
+
+    error.style.display =
+    "none";
+
+
+    card.style.display =
+    "none";
+
+
+    /*
+    EMPTY SEARCH
+    */
+
+
+    if (!regNumber) {
+
+        showError(
+            "Please enter Registration Number."
+        );
+
+        return;
+
+    }
+
+
+    /*
+    SHOW LOADING
+    */
+
+
+    loading.style.display =
+    "block";
+
+
+    /*
+    API URL
+    */
+
+
+    const url =
+
+    API_URL
+    +
+    "?reg="
+    +
+    encodeURIComponent(
+        regNumber
+    );
+
+
+    /*
+    FETCH DATA
+    */
+
+
+    fetch(url)
+
+
+    .then(
+        response =>
+        response.json()
+    )
+
+
+    .then(
+        data => {
+
+
+        loading.style.display =
+        "none";
+
+
+        /*
+        STUDENT FOUND
+        */
+
+
+        if (
+            data.success &&
+            data.student
+        ) {
+
+
+            displayStudent(
+                data.student
+            );
+
+
+        }
+
+
+        /*
+        STUDENT NOT FOUND
+        */
+
+
+        else {
+
+
+            showError(
+
+                data.message
+
+                ||
+
+                "Student not found."
+
+            );
+
+
+        }
+
+
+    })
+
+
+    .catch(
+        error => {
+
+
+        loading.style.display =
+        "none";
+
+
+        showError(
+
+            "Unable to connect to database."
+
+        );
+
+
+        console.error(
+            error
+        );
+
+
+    });
+
+}
+
+
+
+/*
+=====================================
+DISPLAY STUDENT
+=====================================
+*/
+
+function displayStudent(
+    student
+) {
+
+
+    const card =
+
+    document
+    .getElementById(
+        "studentCard"
+    );
+
+
+    const name =
+
+    document
+    .getElementById(
+        "studentName"
+    );
+
+
+    const photo =
+
+    document
+    .getElementById(
+        "studentPhoto"
+    );
+
+
+    const grid =
+
+    document
+    .getElementById(
+        "infoGrid"
+    );
+
+
+    /*
+    STUDENT NAME
+    */
+
+
+    name.innerText =
+
+    student[
+        "Student Name"
+    ]
+
+    ||
+
+    "Student";
+
+
+    /*
+    STUDENT PHOTO
+    */
+
+
+    photo.src =
+
+    student[
+        "Student Photo"
+    ]
+
+    ||
+
+    "https://via.placeholder.com/120";
+
+
+    /*
+    CLEAR OLD DATA
+    */
+
+
+    grid.innerHTML = "";
+
+
+    /*
+    DISPLAY INFORMATION
+    */
+
+
+    const fields = [
+
+        {
+            key:
+            "Student Name",
+
+            icon:
+            "👤"
+        },
+
+        {
+            key:
+            "Registration Number",
+
+            icon:
+            "🆔"
+        },
+
+        {
+            key:
+            "Roll Number",
+
+            icon:
+            "🔢"
+        },
+
+        {
+            key:
+            "Date of Birth",
+
+            icon:
+            "📅"
+        },
+
+        {
+            key:
+            "Gender",
+
+            icon:
+            "⚧"
+        },
+
+        {
+            key:
+            "Blood Group",
+
+            icon:
+            "🩸"
+        },
+
+        {
+            key:
+            "Mobile",
+
+            icon:
+            "📱"
+        },
+
+        {
+            key:
+            "Email",
+
+            icon:
+            "📧"
+        },
+
+        {
+            key:
+            "Address",
+
+            icon:
+            "🏠"
+        },
+
+        {
+            key:
+            "Status",
+
+            icon:
+            "✅"
+        }
+
+    ];
+
+
+    fields.forEach(
+        field => {
+
+
+        const item =
+
+        document
+        .createElement(
+            "div"
+        );
+
+
+        item.className =
+        "info-item";
+
+
+        if (
+            field.key ===
+            "Registration Number"
+        ) {
+
+            item.classList.add(
+                "reg-number"
+            );
+
+        }
+
+
+        item.innerHTML = `
+
+            <div
+                class="info-label"
+            >
+
+                ${field.icon}
+
+                ${field.key}
+
+            </div>
+
+
+            <div
+                class="info-value"
+            >
+
+                ${escapeHTML(
+
+                    student[
+                        field.key
+                    ]
+
+                    ||
+
+                    "N/A"
+
+                )}
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(
+            item
+        );
+
+
+    });
+
+
+    /*
+    SHOW RESULT
+    */
+
+
+    card.style.display =
+    "block";
+
+}
+
+
+
+/*
+=====================================
+ERROR MESSAGE
+=====================================
+*/
+
+function showError(
+    message
+) {
+
+
+    const error =
+
+    document
+    .getElementById(
+        "error"
+    );
+
+
+    error.innerText =
+    message;
+
+
+    error.style.display =
+    "block";
+
+}
+
+
+
+/*
+=====================================
+SECURITY
+=====================================
+*/
+
+function escapeHTML(
+    value
+) {
+
+
+    return String(
+        value
+    )
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+
+/*
+=====================================
+ENTER KEY SEARCH
+=====================================
+*/
+
+document
+
+.getElementById(
+    "regNumber"
+)
+
+.addEventListener(
+    "keypress",
+
+    function(event) {
+
+
+        if (
+            event.key ===
+            "Enter"
+        ) {
+
+
+            searchStudent();
+
+
+        }
+
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>
